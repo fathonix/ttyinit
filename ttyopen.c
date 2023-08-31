@@ -101,7 +101,8 @@ static void console_init(char* tty)
     if (tty) {
         s = tty;
     } else {
-	    if (s = getenv("CONSOLE"))
+		s = getenv("CONSOLE");
+	    if (!s)
 		    s = getenv("console");
 #if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 	    /* BSD people say their kernels do not open fd 0,1,2; they need this: */
