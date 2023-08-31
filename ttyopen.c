@@ -17,6 +17,7 @@
 #include <termios.h>
 #include <stdarg.h>
 #include <errno.h>
+#include <string.h>
 
 void printerr(int err, const char *fmt, ...)
 {
