@@ -151,7 +151,7 @@ int main(int argc, char **argv, char **envp)
 
 	cmdargsptr[0] = argv[2];
     if (argc > 3)
-		for (int i = 3; i < argc; i++)
+		for (size_t i = 3; i < argc; i++)
         	cmdargsptr[i - 2] = argv[i];
 	cmdargsptr[argc - 2] = NULL;
 
