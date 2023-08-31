@@ -15,11 +15,16 @@
 #include <fcntl.h>
 #include <paths.h>
 #include <termios.h>
+#include <stdarg.h>
+#include <errno.h>
 
-void printerr(int errno, char *msg, ...)
+void printerr(int err, const char *fmt, ...)
 {
-	fprintf(stderr, msg);
-	exit(errno);
+	va_list argptr;
+    va_start(argptr, fmt);
+	vfprintf(stderr, fmt, argptr);
+	va_end(argptr);
+	exit(err);
 }
 
 void sanitize_stdio(void)
@@ -33,7 +38,7 @@ void sanitize_stdio(void)
 		 * Do not use xopen above, but obtain _ANY_ open descriptor,
 		 * even bogus one as below. */
 		if ((fd = open("/", O_RDONLY, 0666)) < 0) /* don't believe this can fail */
-			printerr(-1, "cannot open '/'");
+			printerr(errno, "cannot open '/'");
 	}
 	while ((unsigned)fd < 2)
 		fd = dup(fd); /* have 0,1,2 open at least to /dev/null */
@@ -109,7 +114,7 @@ static void console_init(char* tty)
 			dup2(fd, STDIN_FILENO);
 			dup2(fd, STDOUT_FILENO);
 			if (dup2(fd, STDERR_FILENO) != STDERR_FILENO)
-				printerr(-1, "cannot duplicate file descriptor");
+				printerr(errno, "cannot duplicate file descriptor");
 			close(fd);
 		}
 	} else {
