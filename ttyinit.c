@@ -98,7 +98,7 @@ static void console_init(char* tty)
 #endif
 	char *s;
 
-    if (tty) {
+    if (tty && strncmp(tty, _PATH_DEV, strlen(_PATH_DEV)) == 0) {
         s = tty;
     } else {
 		s = getenv("CONSOLE");
