@@ -1,7 +1,7 @@
 /*
- * ttyopen - TTY opener, based on Busybox implementation of init
+ * ttyinit - TTY initializer, based on Busybox implementation of init
  *
- * usage: ttyopen TTYPATH CMD [ARG1] [ARG2] ...
+ * usage: ttyinit TTYPATH CMD [ARG1] [ARG2] ...
  *
  * Copyright (C) 1995-2023 The Busybox Project
  * Copyright (C) 2023 Aldo Adirajasa Fathoni

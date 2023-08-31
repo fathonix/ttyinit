@@ -1,6 +1,6 @@
-# `ttyopen`
+# `ttyinit`
 
-This repository holds `ttyopen` - TTY opener, based on [Busybox](https://busybox.net/)
+This repository holds `ttyinit` - TTY initializer, based on [Busybox](https://busybox.net/)
 implementation of `init`.
 
 I wrote this because I'm creating a very minimal distro that uses
@@ -12,16 +12,16 @@ TTY initialization, so this tiny utility will do it.
 
 ## Usage
 
-    ttyopen TTYPATH CMD [ARG1] [ARG2] ...
+    ttyinit TTYPATH CMD [ARG1] [ARG2] ...
 
 Example:
 
-    ttyopen /dev/tty1 /bin/sh
+    ttyinit /dev/tty1 /bin/sh
 
-`ttyopen` must be run as superuser.
+`ttyinit` must be run as superuser.
 
 ## License
 
-    ttyopen is licensed under GPLv2, in accordance with Busybox license.
+    ttyinit is licensed under GPLv2, in accordance with Busybox license.
     Copyright (C) 1995-2023 The Busybox Project
     Copyright (C) 2023 Aldo Adirajasa Fathoni

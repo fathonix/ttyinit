@@ -1,4 +1,4 @@
-ttyopen.o
-ttyopen
+ttyinit.o
+ttyinit
 .vscode/*
 .idea/*

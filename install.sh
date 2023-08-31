@@ -1,3 +1,3 @@
 #!/bin/sh
-"${CC:-gcc}" ttyopen.c -o ttyopen
-install -m 755 ttyopen "${PREFIX}/sbin"
+"${CC:-gcc}" ttyinit.c -o ttyinit
+install -m 755 ttyinit "${PREFIX}/sbin"
