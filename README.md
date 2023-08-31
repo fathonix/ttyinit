@@ -1,7 +1,7 @@
 # `ttyopen`
 
 This repository holds `ttyopen` - TTY opener, based on [Busybox](https://busybox.net/)
-implementation of init.
+implementation of `init`.
 
 I wrote this because I'm creating a very minimal distro that uses
 [Toybox](http://landley.net/toybox/about.html) and
