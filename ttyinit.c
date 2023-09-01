@@ -88,6 +88,8 @@ static void set_sane_term(void)
 	/* local modes */
 	tty.c_lflag = ISIG | ICANON | ECHO | ECHOE | ECHOK | ECHOCTL | ECHOKE | IEXTEN;
 
+	cfsetispeed(&tty, B9600);
+	cfsetospeed(&tty, B9600);
 	tcsetattr(STDIN_FILENO, TCSANOW, &tty);
 }
 
