@@ -77,7 +77,11 @@ static void set_sane_term(void)
 # define CRTSCTS 0
 #endif
 	/* added CRTSCTS to fix Debian bug 528560 */
+#if defined(__linux__) || defined(__FreeBSD__)
 	tty.c_cflag &= CBAUD | CBAUDEX | CSIZE | CSTOPB | PARENB | PARODD | CRTSCTS;
+#else
+	tty.c_cflag &= CSIZE | CSTOPB | PARENB | PARODD | CRTSCTS;
+#endif
 	tty.c_cflag |= CREAD | HUPCL | CLOCAL;
 
 	/* input modes */
