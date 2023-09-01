@@ -18,6 +18,7 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <string.h>
+#include <sys/stat.h>
 
 void printerr(int err, const char *fmt, ...)
 {
@@ -150,6 +151,8 @@ int main(int argc, char **argv, char **envp)
         printerr(1, "usage: %s TTYPATH CMD [ARG1] [ARG2] ...\n", argv[0]);
 
     char *cmdargsptr[argc - 1];
+	struct stat st;
+	int exc = ENOTTY;
 
 	cmdargsptr[0] = argv[2];
     if (argc > 3)
@@ -161,7 +164,8 @@ int main(int argc, char **argv, char **envp)
     set_sane_term();
 	setsid();
 
-	int exc = execve(argv[2], cmdargsptr, envp);
+	if (fstat(0, &st) == 0 && S_ISCHR(st.st_mode))
+		exc = execve(argv[2], cmdargsptr, envp);
     if (exc != 0)
 		fprintf(stderr, "exec error: %s\n", strerror(exc));
     return exc;
