@@ -118,8 +118,11 @@ static void console_init(char* tty)
 #endif
     }
 	if (s) {
+		close(STDIN_FILENO);
 		int fd = open(s, O_RDWR | O_NONBLOCK | O_NOCTTY);
 		if (fd >= 0) {
+			fchown(fd, 0, 0);
+			fchmod(fd, 0666);
 			dup2(fd, STDIN_FILENO);
 			dup2(fd, STDOUT_FILENO);
 			if (dup2(fd, STDERR_FILENO) != STDERR_FILENO)
