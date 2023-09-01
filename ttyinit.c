@@ -168,7 +168,7 @@ int main(int argc, char **argv, char **envp)
     set_sane_term();
 	setsid();
 
-	if (fstat(0, &st) == 0 && S_ISCHR(st.st_mode))
+	if (fstat(STDIN_FILENO, &st) == 0 && S_ISCHR(st.st_mode))
 		exc = execve(argv[2], cmdargsptr, envp);
     if (exc != 0)
 		fprintf(stderr, "exec error: %s\n", strerror(exc));
